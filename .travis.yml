@@ -3,14 +3,18 @@ node_js:
 - "node"
 
 env:
-  VERSION=1.0
+  MY_STAGE=test VERSION=1.0
+  MY_STAGE=build VERSION=1.0
+  MY_STAGE=publish VERSION=1.0
     
 deploy:
-  provider: script
-  script: "cp .npmrc.template $HOME/.npmrc && npm publish"
-  skip_cleanup: true
-  on:
-    tags: true
+    # deploy to all environments
+  - provider: script
+    script: bash scripts/build.sh $TRAVIS_COMMIT
+    on:
+      branch: master
+
+script:
 
 notifications:
   email:
