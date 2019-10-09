@@ -11,16 +11,17 @@ deploy:
 
 jobs:
   include:
+    - stage: build docker image
+      script:
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - docker build -t innablr-test .
+      - docker images
+      - docker tag innablr-test $DOCKER_USERNAME/innablr-test
+      - docker push $DOCKER_USERNAME/innablr-test
     - stage: test
-      script:
-        - echo "Running scripts for test env"
-    - stage: build
-      script:
-        - echo "Running scripts for build env"
-    - stage: publish
-      script:
-        - echo "Running scripts for publish env"
-        
+      script: docker run --rm $DOCKER_USERNAME/innablr-test cat status.json
+    - script: docker run --rm $DOCKER_USERNAME/innablr-test cat status.json
+
 notifications:
   email:
     recipients:
