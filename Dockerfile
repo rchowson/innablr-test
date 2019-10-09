@@ -8,8 +8,8 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY ...
+COPY server.js /usr/src/app/
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD [ "node", "server.js" ]
