@@ -14,8 +14,18 @@ deploy:
     on:
       branch: master
 
-script:
-
+jobs:
+  include:
+    - stage: test
+      script:
+        - echo "Running scripts for test env"
+    - stage: build
+      script:
+        - echo "Running scripts for build env"
+    - stage: publish
+      script:
+        - echo "Running scripts for publish env"
+        
 notifications:
   email:
     recipients:
