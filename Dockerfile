@@ -9,6 +9,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY server.js /usr/src/app/
+COPY status.json /usr/src/app/
 
 EXPOSE 80
 
