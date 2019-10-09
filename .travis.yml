@@ -1,11 +1,6 @@
 language: node_js
 node_js:
 - "node"
-
-env:
-  MY_STAGE=test VERSION=1.0
-  MY_STAGE=build VERSION=1.0
-  MY_STAGE=publish VERSION=1.0
     
 deploy:
     # deploy to all environments
