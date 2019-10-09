@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/status', (req, res) => {
-  res.sendFile(api:status);
+  res.sendFile('api/status.json', { root : __dirname});
 });
 
 app.listen(PORT, HOST);
